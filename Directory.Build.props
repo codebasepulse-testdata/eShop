@@ -12,6 +12,11 @@
     <UseArtifactsOutput>true</UseArtifactsOutput>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(TargetFrameworks)' == '' And !$(TargetFramework.Contains('-'))">
+  <!-- Bezpečné pouze pro čisté single-target projekty bez OS/platformních specifikací -->
+  <SkipGetTargetFrameworkProperties>true</SkipGetTargetFrameworkProperties>
+</PropertyGroup>
+
   <!-- Enable OpenAI OpenTelemetry so OpenAI calls participate in tracing and metrics. -->
   <ItemGroup>
     <RuntimeHostConfigurationOption Include="OpenAI.Experimental.EnableOpenTelemetry"
